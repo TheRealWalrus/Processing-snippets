@@ -3,10 +3,14 @@ class Arrow {
   float theta;
   float angVel;
   float angAcc;
+  float k; //string constant
+  
 
   Arrow(PVector _location) {
     location = _location.copy();
-    theta = PI;
+    k = 0.005;
+    theta = 2.5;
+    
   }
 
   void run() {
@@ -22,15 +26,18 @@ class Arrow {
     translate(location.x, location.y);
     rotate(theta);
     beginShape(); 
-    vertex(0, -20);
-    vertex(5, -10);
-    vertex( -5, -10);
+    vertex(0, 20);
+    vertex(5, 10);
+    vertex( -5, 10);
     endShape(CLOSE);
-    line(0, -10, 0, 20);
+    line(0, -20, 0, 10);
     popMatrix();
   }
   
   void update() {
-    theta += 0.1;
+    angAcc = -1 * theta * k;
+    angVel += angAcc;
+    angVel *= 0.99;
+    theta += angVel;
   }
 }
