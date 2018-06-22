@@ -19,8 +19,8 @@ class Arrow {
   }
 
   void display() {
-    fill(0);
-    stroke(255);
+    fill(#50EACF);
+    stroke(#744015);
     
     pushMatrix();
     translate(location.x, location.y);
